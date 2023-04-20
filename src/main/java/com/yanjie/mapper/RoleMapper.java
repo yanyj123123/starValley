@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 @Mapper
 public interface RoleMapper {
+    List<Role> selectAllRoleTest();
     //展示所有人物
     @Select("select *from role")
     List<Role> selectAllRole();
@@ -22,5 +23,12 @@ public interface RoleMapper {
     List<Role> selectByName(String name);
     @Update("update role set name=#{name},gender=#{gender},isMarried=#{isMarried},job=#{job},hobby=#{hobby},description=#{description},birthday=#{birthday},img=#{img} where id=#{id}")
     boolean updateRole(Role role);
+
+    //返回总记录数
+    int roleCount();
+
+    //返回每页记录列表,page为页码，pageSize为每页记录数
+    List<Role> pageRoleList(Integer page,Integer pageSize);
+
 
 }
